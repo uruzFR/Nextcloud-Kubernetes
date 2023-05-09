@@ -1,0 +1,62 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    component: app
+  name: app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: app
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        component: app
+    spec:
+      containers:
+      - env:
+        - name: MYSQL_DATABASE
+          valueFrom:
+            secretKeyRef:
+              key: MYSQL_DATABASE
+              name: db-secrets
+        - name: MYSQL_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: MYSQL_PASSWORD
+              name: db-secrets
+        - name: MYSQL_USER
+          valueFrom:
+            secretKeyRef:
+              key: MYSQL_USER
+              name: db-secrets
+        image: nextcloud:apache
+        imagePullPolicy: Always
+        name: app
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - mountPath: /var/www/html
+          name: app-persistent-storage
+      restartPolicy: Always
+      volumes:
+      - name: app-persistent-storage
+        persistentVolumeClaim:
+          claimName: nc-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    component: app
+  name: app
+spec:
+  ports:
+  - nodePort: 30005
+    port: 80
+  selector:
+    component: app
+  type: NodePort
