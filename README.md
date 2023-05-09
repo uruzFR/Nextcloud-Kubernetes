@@ -26,13 +26,28 @@ You can use kubectl commands to manage your deployment, services, and pods.
 
 For example, to view the status of your pods, use the following command:
 
-        kubectl get pods
+       kubectl get pods
 To view the logs of a pod, use the following command:
-
-        kubectl logs [pod-name]
+       
+       kubectl logs [pod-name]
 For more information on using kubectl, see the Kubernetes documentation.
 
 ## Info :
+
+If you do not have root access on the cluster, you may need to recompile the Docker image with a different UID and GID. To do so, use the following Dockerfile:
+       
+    FROM nextcloud:apache
+    RUN apk --no-cache add shadow && \
+       groupmod --gid 1001 www-data && \
+       usermod --uid 1001 www-data
+After that, call this file to build your image:
+
+       app:
+    build:
+        context: ./
+        dockerfile: Dockerfile
+    restart: always
+
 
 ## Authors
 
