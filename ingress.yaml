@@ -8,7 +8,7 @@ metadata:
   name: nextcloud-ingress
 spec:
   rules:
-  - host: nextcloud.k8s-ppi.aze.michelin.com
+  - host: nextcloud.mydomain.com
     http:
       paths:
       - backend:
