@@ -32,6 +32,8 @@ To view the logs of a pod, use the following command:
         kubectl logs [pod-name]
 For more information on using kubectl, see the Kubernetes documentation.
 
+## Info :
+
 ## Authors
 
 - [@uruzFR](https://github.com/uruzFR)
