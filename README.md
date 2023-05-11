@@ -9,7 +9,7 @@ This repository contains YAML files for deploying Nextcloud on a Kubernetes clus
 
 1. Clone this repository:
 
-       git clone https://github.com/uruzFR/module-sim800c.git
+       git clone https://github.com/uruzFR/Nextcloud_Apache-Kubernetes.git
 2. Edit the YAML files according to your requirements.
 
 3. Apply the YAML files using kubectl apply -f command:
