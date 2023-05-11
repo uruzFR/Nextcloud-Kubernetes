@@ -1,5 +1,5 @@
-# Nextcloud-Kubernetes
-Deploy Nextcloud on Kubernetes
+# Nextcloud_Apache-Kubernetes
+Deploy Nextcloud Apache Version on Kubernetes
 
 ![logo](/Images/Nextcloud_Logo.png )
 
